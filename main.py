@@ -8,6 +8,7 @@ from services.telegram import TelegramBot
 # ex)python main.py TSLA
 # TSLA, AAPL, MSFT, NVDA
 # XOM(엑손모빌), JNJ(존슨앤드존슨)
+# SPY (S&P500)
 
 load_dotenv()
 

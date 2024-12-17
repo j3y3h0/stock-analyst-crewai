@@ -20,7 +20,6 @@ class TelegramBot:
         """
         try:
             await self.bot.send_message(chat_id=self.channel_id, text=message)
-            print(f"Message sent successfully: {message}")
         except Exception as e:
             print(f"Error while sending message: {e}")
 

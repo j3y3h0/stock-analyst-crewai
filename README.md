@@ -2,8 +2,7 @@
 
 # Requirements
 
-- Python3
-- [venv](https://docs.python.org/ko/3/library/venv.html)
+- Python3.11
 
 # Commands
 
