@@ -21,7 +21,8 @@ python -m venv .venv
 pip install -r requirements.txt
 
 # 프로젝트 실행
-python ./src/app.py
+python main.py TSLA
+pythonw main.py
 
 # 가상환경 연결해제
 deactivate

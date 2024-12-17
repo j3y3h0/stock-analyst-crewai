@@ -3,6 +3,18 @@ from crewai_tools import ScrapeWebsiteTool
 from services.tools import Tools
 
 class Agents:
+    def researcher(self):
+        return Agent(
+            role="Researcher",
+            goal="Gathers, interprets and summarizes vasts amounts of data to provide a comprehensive overview of the sentiment and news surrounding a stock.",
+            backstory="You're skilled in gathering and interpreting data from various sources to give a complete picture of a stock's sentiment and news. You read each data source carefuly and extract the most important information. Your insights are crucial for making informed investment decisions.",
+            verbose=True,
+            tools=[
+                Tools.stock_news,
+                ScrapeWebsiteTool(),
+            ],
+        )
+    
     def technical_analyst(self):
         return Agent(
             role="Technical Analyst",
@@ -13,16 +25,15 @@ class Agents:
                 Tools.stock_price,
             ],
         )
-
-    def researcher(self):
+    
+    def info_analyst(self):
         return Agent(
-            role="Researcher",
-            goal="Gathers, interprets and summarizes vasts amounts of data to provide a comprehensive overview of the sentiment and news surrounding a stock.",
-            backstory="You're skilled in gathering and interpreting data from various sources to give a complete picture of a stock's sentiment and news. You read each data source carefuly and extract the most important information. Your insights are crucial for making informed investment decisions.",
+            role="Info Analyst",
+            goal="Analyzes and summarizes key information about a stock, such as its sector, market cap, P/E ratio, and other fundamental details.",
+            backstory="You specialize in fundamental analysis, providing investors with critical insights about a stock's sector, financial metrics, and overall standing in the market. Your data-driven analysis helps investors make well-informed decisions.",
             verbose=True,
             tools=[
-                Tools.stock_news,
-                ScrapeWebsiteTool(),
+                Tools.stock_information,
             ],
         )
 

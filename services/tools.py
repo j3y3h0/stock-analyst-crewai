@@ -9,7 +9,7 @@ class Tools:
         The input of this tool should a ticker, for example AAPL, NET, TSLA etc...
         """
         stock = yf.Ticker(ticker)
-        return stock.history(period="3mo").to_csv()
+        return stock.history(period="6mo").to_csv()
 
     @tool("Stock news URLs")
     def stock_news(ticker: str):
@@ -19,6 +19,17 @@ class Tools:
         """
         stock = yf.Ticker(ticker)
         return list(map(lambda x: x["link"], stock.news))
+
+    @tool("Stock information analysis")
+    def stock_information(ticker: str):
+        """
+        Useful to analyze and retrieve general information about a stock.
+        This includes company details like sector, full name, market cap, and more.
+        The input to this tool should be a ticker
+        """
+        stock = yf.Ticker(ticker)
+        info = stock.info
+        return "\n".join([f"{key}: {value}" for key, value in info.items()])
 
     @tool("Company's income statement")
     def income_stmt(ticker: str):

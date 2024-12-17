@@ -2,7 +2,6 @@ from crewai import Task
 from datetime import datetime
 
 class Tasks:
-
     def research(self, agent):
         today = datetime.today()
         year_month = today.strftime("%Y%m")
@@ -27,6 +26,20 @@ class Tasks:
         return Task(
             description="Conduct a detailed technical analysis of the price movements of {company}'s stock and trends identify key support and resistance levels, chart patterns, and other technical indicators that could influence the stock's future performance. Use historical price data and technical analysis tools to provide insights on potential entry points and price targets.",
             expected_output=f"Your final answer MUST be a detailed technical analysis report that includes key support and resistance levels, chart patterns, and technical indicators. Provide insights on potential entry points, price targets, and any other relevant information that could help your customer make informed investment decisions. Use Korean",
+            agent=agent,
+            output_file=file_dir,
+        )
+    
+    def info_analysis(self, agent):
+        today = datetime.today()
+        year_month = today.strftime("%Y%m")
+        day = today.strftime("%d")
+        file_dir = f"./results/{year_month}/{day}"
+        file_dir += "/02_stock_info_analysis.md"
+
+        return Task(
+            description="Analyze and summarize the key fundamental information of {company}'s stock. Include sector, market cap, P/E ratio, 52-week high and low, and other notable financial metrics.",
+            expected_output=f"Your final answer MUST be a detailed analysis of the key fundamental information of the stock. Include the sector, market cap, P/E ratio, beta, dividend yield, 52-week high and low, current price, and a short company summary. Use Korean.",
             agent=agent,
             output_file=file_dir,
         )
