@@ -40,7 +40,7 @@ if __name__ == "__main__":
         asyncio.run(telegram_bot.send_message(message=str(result)))
 
     # run_etf("SPY")
-    run_stock("005930.KS")
+    # run_stock("005930.KS")
 
     # APScheduler 스케줄러 설정
     scheduler = BackgroundScheduler()
