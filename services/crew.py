@@ -1,4 +1,4 @@
-import os
+import yfinance as yf
 from langchain_openai import ChatOpenAI
 from crewai import Crew
 from crewai.process import Process
@@ -76,6 +76,18 @@ class StockAnalyst:
         
         if not name:
             raise ValueError(f"'name' 파라미터가 올바르지 않습니다.: {name}")
+        
+        # 입력받은 name이 유효한 ticker인지 확인
+        try:
+            ticker = yf.Ticker(name)
+            info = ticker.info
+            
+            # 'symbol'를 확인하여 유효성 검증
+            if 'symbol' not in info or info['symbol'] is None:
+                return f"'{name}'은(는) 유효한 티커가 아닙니다."
+            
+        except Exception as e:
+            raise ValueError(f"'{name}'에 대해 티커 검증 중 오류가 발생했습니다: {e}")
         
         result = self.crew.kickoff(
             inputs=dict(
@@ -157,6 +169,18 @@ class EtfAnalyst:
         if not name:
             raise ValueError(f"'name' 파라미터가 올바르지 않습니다.: {name}")
         
+        # 입력받은 name이 유효한 ticker인지 확인
+        try:
+            ticker = yf.Ticker(name)
+            info = ticker.info
+            
+            # 'symbol'를 확인하여 유효성 검증
+            if 'symbol' not in info or info['symbol'] is None:
+                return f"'{name}'은(는) 유효한 티커가 아닙니다."
+            
+        except Exception as e:
+            raise ValueError(f"'{name}'에 대해 티커 검증 중 오류가 발생했습니다: {e}")
+        
         result = self.crew.kickoff(
             inputs=dict(
                 company=name,
@@ -164,5 +188,4 @@ class EtfAnalyst:
             ),
         )
         return result
-    
     
